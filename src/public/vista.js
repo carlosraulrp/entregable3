@@ -27,4 +27,10 @@ const renderProducts = products =>{
     products.map(producto => {
         notesList.append(vistaProducto(producto))
     })
+
+ 
+}
+
+const appendProduct = product =>{
+    notesList.append(vistaProducto(product))
 }
