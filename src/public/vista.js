@@ -8,7 +8,7 @@ const vistaProducto = product =>{
             <h1 class = "h3 card-title">${product.title}</h1>
             <div>
                 <button class = "btn btn-danger delete rounded-0" data-id="${product.id}">borrar</button>
-                <button class = "btn btn-secondary rounded-0" data-id="${product.id}">actualizar</button>
+                
             
             </div>
         </div>
@@ -19,11 +19,14 @@ const vistaProducto = product =>{
 
     `
     const btnDelete = div.querySelector('.delete')
-    console.log(btnDelete)
+    btnDelete.addEventListener("click", () =>{
+        deleteProduct(btnDelete.dataset.id)
+    })
     return div
 }
 
 const renderProducts = products =>{
+    notesList.innerHTML = ""
     products.map(producto => {
         notesList.append(vistaProducto(producto))
     })

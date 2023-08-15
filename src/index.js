@@ -7,7 +7,7 @@ const {Server} = require('socket.io')
 const { v4: uuidv4 } = require('uuid')
 const PORT = 8080
 
-const products = []
+let products = []
 
 const app = express()
 const server = http.createServer(app)
@@ -22,10 +22,20 @@ io.on('connection', (socket) =>{
     socket.emit("server:loadProducts", products)
     socket.on("cliente: nueva tarea", (newProduct) =>{
        const product = {...newProduct, id: uuidv4()}
-       console.log(product)
        products.push(product)
        socket.emit("server: newProduct", product)
+
     })
+
+    socket.on("cliente:deleteProduct", id =>{
+       products= products.filter((p) => p.id !== id)
+       console.log(products)
+       socket.emit("server:loadProducts", products)
+    })
+
+    
+
+    
 }) 
 
 

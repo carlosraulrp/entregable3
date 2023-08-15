@@ -6,6 +6,10 @@ const saveProduct = (title, description) =>{
     })
 }
 
+const deleteProduct = id =>{
+    socket.emit("cliente:deleteProduct", id)
+}
+
 socket.on("server: newProduct", appendProduct)
 
 socket.on("server:loadProducts", renderProducts)
